@@ -193,7 +193,7 @@ class Grades_Of_Student_Registered_To_Course(Resource):
                                 result = x["score"]
                                 return_value = {"score": result}
                                 return return_value
-                            return {"error": "student does is not registered to course"}
+                            return {"error": "Student is not registered to course"}
                     return {"error": "Course not found"}
                 return {"error": "Grade can only be viewed by teacher or the student"}
             return {"error": "Invalid token"}
