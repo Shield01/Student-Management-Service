@@ -37,7 +37,6 @@ admin = api.model(
     {
         "name": fields.String(required=True, description="The student's name"),
         "email_address": fields.String(required=False, description="The student's email address"),
-        "role": fields.String(),
         "password": fields.String(required=True)
     }
 )
@@ -115,13 +114,12 @@ class Students(Resource):
         name = data.get("name")
         email_address = data.get("email_address")
         password = data.get("password")
-        role = data.get("role")
 
-        student: Student = {}
+        student: StudentModel = {}
         student["name"] = name
         student["email_address"] = email_address
         student["password"] = hashPassword(password)
-        student["role"] = role
+        student["role"] = "admin"
 
         task = students_collection.insert_one(dict(student))
 
@@ -149,7 +147,7 @@ class CreateStudents(Resource):
                     email_address = data.get("email_address")
                     password = data.get("password")
 
-                    student: Student = {}
+                    student: StudentModel = {}
                     student["name"] = name
                     student["email_address"] = email_address
                     student["password"] = hashPassword(password)
